@@ -1,11 +1,12 @@
 deps:
-	pip install -r requirements.txt; \
+	pip install -r requirements.txt
 	pip install -r test_requirements.txt
+
 lint:
 	flake8 hello_world test
 
 run:
-    python main.py
+	python main.py
 
 .PHONY: test
 test:
@@ -21,6 +22,7 @@ docker_run: docker_build
 		-d hello-world-printer
 
 TAG=$(USERNAME)/hello-world-printer
+
 docker_push: docker_build
 	@docker login --username $(USERNAME) --password $${DOCKER_PASSWORD}; \
 	docker tag hello-world-printer $(TAG); \
