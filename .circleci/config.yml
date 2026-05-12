@@ -6,27 +6,26 @@ jobs:
       image: ubuntu-2004:current
 
     steps:
-      - checkout
+	- checkout
 
-      - run:
-          name: deps
-          command: make deps
+	- run:
+		name: deps
+		command: make deps
+	- run:
+		name: lint
+		command: make lint
 
-      - run:
-          name: lint
-          command: make lint
+	- run:
+        	name: test
+          	command: make test
 
-      - run:
-          name: test
-          command: make test
-
-      - run:
-          name: docker_build
-          command: docker build -t sample-app .
-
-      - run:
-          name: docker_push
-          command: echo "Docker push"
+	- run:
+		name: docker_build
+		command: make docker_build
+      
+	- run:
+		name: docker_push
+		command: make docker_push
 
 workflows:
   basic:
